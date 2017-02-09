@@ -122,7 +122,7 @@ function financialaclreport_civicrm_selectWhereClause($entity, &$clauses) {
   $allFinancialTypes = CRM_Contribute_Pseudoconstant::financialType();
   $allowedFinancialTypes = CRM_Financial_BAO_FinancialType::getAvailableFinancialTypes();
   $financialTypes = array_diff($allFinancialTypes, $allowedFinancialTypes);
-  if (empty($financialTypes)) {
+  if (empty($allowedFinancialTypes)) {
     $financialTypes = array(0);
   }
   CRM_Core_DAO::executeQuery("DROP TEMPORARY TABLE IF EXISTS civicrm_contribution_temp");
