@@ -113,7 +113,7 @@ function financialaclreport_civicrm_alterSettingsFolders(&$metaDataFolders = NUL
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_selectWhereClause
  */
 function financialaclreport_civicrm_selectWhereClause($entity, &$clauses) {
-  if ($entity != 'aclReport') {
+  if ($entity != 'Contribution') {
     return;
   }
   if (!CRM_Financial_BAO_FinancialType::isACLFinancialTypeStatus()) {
