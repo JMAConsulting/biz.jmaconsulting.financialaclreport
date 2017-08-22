@@ -122,11 +122,11 @@ function financialaclreport_civicrm_selectWhereClause($entity, &$clauses) {
   $allFinancialTypes = CRM_Contribute_Pseudoconstant::financialType();
   $allowedFinancialTypes = CRM_Financial_BAO_FinancialType::getAvailableFinancialTypes();
   $financialTypes = array_diff($allFinancialTypes, $allowedFinancialTypes);
-  if (empty($allowedFinancialTypes)) {
+  if (empty($financialTypes)) {
     $financialTypes = array(0);
   }
-  CRM_Core_DAO::executeQuery("DROP TEMPORARY TABLE IF EXISTS civicrm_contribution_temp");
-  $sql = "CREATE TEMPORARY TABLE civicrm_contribution_temp AS SELECT civicrm_contribution_ft.id
+  CRM_Core_DAO::executeQuery("DROP TEMPORARY TABLE IF EXISTS civicrm_contribution_financial_type_temp");
+  $sql = "CREATE TEMPORARY TABLE civicrm_contribution_financial_type_temp AS SELECT civicrm_contribution_ft.id
             FROM civicrm_contribution civicrm_contribution_ft
             LEFT JOIN civicrm_line_item  civicrm_line_item_ft
                     ON civicrm_contribution_ft.id = civicrm_line_item_ft.contribution_id AND
@@ -136,6 +136,6 @@ function financialaclreport_civicrm_selectWhereClause($entity, &$clauses) {
                     civicrm_line_item_ft.id IS NOT NULL
             GROUP BY civicrm_contribution_ft.id";
   CRM_Core_DAO::executeQuery($sql);
-  $clauses['civicrm_contribution']['id'] = "NOT IN (SELECT id FROM civicrm_contribution_temp)";
+  $clauses['id'] = "NOT IN (SELECT id FROM civicrm_contribution_financial_type_temp)";
 }
 
