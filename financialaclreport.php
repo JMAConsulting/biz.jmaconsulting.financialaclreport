@@ -113,9 +113,11 @@ function financialaclreport_civicrm_alterSettingsFolders(&$metaDataFolders = NUL
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_selectWhereClause
  */
 function financialaclreport_civicrm_selectWhereClause($entity, &$clauses) {
+  static $count;
   if ($entity != 'Contribution') {
     return;
   }
+
   if (!CRM_Financial_BAO_FinancialType::isACLFinancialTypeStatus()) {
     return FALSE;
   }
@@ -125,8 +127,11 @@ function financialaclreport_civicrm_selectWhereClause($entity, &$clauses) {
   if (empty($financialTypes)) {
     $financialTypes = array(0);
   }
-  CRM_Core_DAO::executeQuery("DROP TEMPORARY TABLE IF EXISTS civicrm_contribution_financial_type_temp");
-  $sql = "CREATE TEMPORARY TABLE civicrm_contribution_financial_type_temp AS SELECT civicrm_contribution_ft.id
+
+  $count = empty($count) ? 1 : $count+1;
+  $tempTable = "civicrm_contribution_financial_type_temp_" . $count;
+  CRM_Core_DAO::executeQuery("DROP TEMPORARY TABLE IF EXISTS $tempTable");
+  $sql = "CREATE TEMPORARY TABLE $tempTable AS SELECT civicrm_contribution_ft.id
             FROM civicrm_contribution civicrm_contribution_ft
             LEFT JOIN civicrm_line_item  civicrm_line_item_ft
                     ON civicrm_contribution_ft.id = civicrm_line_item_ft.contribution_id AND
@@ -136,6 +141,5 @@ function financialaclreport_civicrm_selectWhereClause($entity, &$clauses) {
                     civicrm_line_item_ft.id IS NOT NULL
             GROUP BY civicrm_contribution_ft.id";
   CRM_Core_DAO::executeQuery($sql);
-  $clauses['id'] = "NOT IN (SELECT id FROM civicrm_contribution_financial_type_temp)";
+  $clauses['id'] = "NOT IN (SELECT id FROM $tempTable)";
 }
-
