@@ -1,26 +1,27 @@
 <?xml version="1.0"?>
 <extension key="biz.jmaconsulting.financialaclreport" type="module">
+  <downloadUrl>https://github.com/JMAConsulting/biz.jmaconsulting.financialaclreport/archive/financialaclreport-1.0.zip</downloadUrl>
   <file>financialaclreport</file>
-  <name>Financial Type ACLs</name>
+  <name>Access Control by Financial Type for Reports</name>
   <description>Restrict users from viewing/editing contributions and other entities based on permission of financial types.</description>
   <license>AGPL-3.0</license>
   <maintainer>
-    <author>Edsel</author>
-    <email>edsel.lopez@jmaconsulting.biz</email>
+    <author>JMA Consulting</author>
+    <email>support@jmaconsulting.biz</email>
   </maintainer>
   <urls>
-    <url desc="Main Extension Page">http://FIXME</url>
-    <url desc="Documentation">http://FIXME</url>
-    <url desc="Support">http://FIXME</url>
+    <url desc="Main Extension Page">https://github.com/JMAConsulting/biz.jmaconsulting.financialaclreport</url>
+    <url desc="Documentation">https://github.com/JMAConsulting/biz.jmaconsulting.financialaclreport/blob/master/README.md</url>
+    <url desc="Support">https://github.com/JMAConsulting/biz.jmaconsulting.financialaclreport/issues</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
-  <releaseDate>2017-02-03</releaseDate>
+  <releaseDate>2017-12-22</releaseDate>
   <version>1.0</version>
   <develStage>alpha</develStage>
   <compatibility>
     <ver>4.7</ver>
   </compatibility>
-  <comments>This is a new, undeveloped module</comments>
+  <comments>Many thanks to Imagine Children's Museum for sponsoring the development of this extension.</comments>
   <civix>
     <namespace>CRM/Financialaclreport</namespace>
   </civix>
