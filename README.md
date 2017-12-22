@@ -2,7 +2,7 @@
 
 ## biz.jmaconsulting.financialaclreports
 
-This extension is required if your site has not enabled access control by financial type at Administer > CiviContribute Component Settings, and not relevant otherwise.
+This extension is required if your site has enabled access control by financial type at Administer > CiviContribute Component Settings, and not relevant otherwise.
 
 Access control by financial types allows sites to restrict create, read, update and delete operations by user role by financial type. For example, bequests could be hidden from everyone except the staff person responsible for major gifts, or membership staff could be restricted to seeing just financial records associated with memberships. This is sometimes called financial ACLs (ie access control lists).
 
