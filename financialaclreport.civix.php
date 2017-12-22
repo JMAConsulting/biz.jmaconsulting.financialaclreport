@@ -245,7 +245,7 @@ function _financialaclreport_civix_insert_navigation_menu(&$menu, $path, $item, 
       $navId = CRM_Core_DAO::singleValueQuery("SELECT max(id) FROM civicrm_navigation");
     }
     $navId++;
-    $menu[$navId] = array (
+    $menu[$navId] = array(
       'attributes' => array_merge($item, array(
         'label' => CRM_Utils_Array::value('name', $item),
         'active' => 1,

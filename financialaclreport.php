@@ -21,7 +21,7 @@ function financialaclreport_civicrm_xmlMenu(&$files) {
 }
 
 /**
- * Implements hook_civicrm_install
+ * Implements hook_civicrm_install().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_install
  */
