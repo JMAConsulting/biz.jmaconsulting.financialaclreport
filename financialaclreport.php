@@ -123,14 +123,14 @@ function financialaclreport_civicrm_selectWhereClause($entity, &$clauses) {
   $count = empty($count) ? 1 : $count + 1;
   $tempTable = "civicrm_contribution_financial_type_temp_" . $count;
   CRM_Core_DAO::executeQuery("DROP TEMPORARY TABLE IF EXISTS $tempTable");
-  $sql = "CREATE TEMPORARY TABLE $tempTable AS SELECT civicrm_contribution_ft.id
+  $sql = "CREATE TEMPORARY TABLE $tempTable AS
+            SELECT civicrm_contribution_ft.id
             FROM civicrm_contribution civicrm_contribution_ft
             LEFT JOIN civicrm_line_item  civicrm_line_item_ft
-                    ON civicrm_contribution_ft.id = civicrm_line_item_ft.contribution_id AND
-                       civicrm_line_item_ft.entity_table = 'civicrm_contribution'
-                    AND civicrm_line_item_ft.financial_type_id IN (" . implode(', ', array_keys($financialTypes)) . ")
-                    WHERE civicrm_contribution_ft.financial_type_id IN (" . implode(', ', array_keys($financialTypes)) . ") AND
-                    civicrm_line_item_ft.id IS NOT NULL
+              ON civicrm_contribution_ft.id = civicrm_line_item_ft.contribution_id
+              AND civicrm_line_item_ft.financial_type_id IN (" . implode(', ', array_keys($financialTypes)) . ")
+            WHERE civicrm_contribution_ft.financial_type_id IN (" . implode(', ', array_keys($financialTypes)) . ")
+            AND civicrm_line_item_ft.id IS NOT NULL
             GROUP BY civicrm_contribution_ft.id";
   CRM_Core_DAO::executeQuery($sql);
   $clauses['id'] = "NOT IN (SELECT id FROM $tempTable)";
