@@ -113,7 +113,7 @@ function financialaclreport_civicrm_selectWhereClause($entity, &$clauses) {
   if (!CRM_Financial_BAO_FinancialType::isACLFinancialTypeStatus()) {
     return FALSE;
   }
-  $allFinancialTypes = CRM_Contribute_Pseudoconstant::financialType();
+  $allFinancialTypes = CRM_Contribute_PseudoConstant::financialType();
   $allowedFinancialTypes = CRM_Financial_BAO_FinancialType::getAvailableFinancialTypes();
   $financialTypes = array_diff($allFinancialTypes, $allowedFinancialTypes);
   if (empty($financialTypes)) {
